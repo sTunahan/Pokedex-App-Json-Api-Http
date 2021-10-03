@@ -38,8 +38,7 @@ class _PokemonListState extends State<PokemonList> {
   Future<Pokedex> pokemonlariGetir() async {
     var response = await http.get(Uri.parse(url));
     var decodedJson = json.decode(response.body);
-    pokedex = Pokedex.fromJson(
-        decodedJson); //içinde pokemon listesi olan bir nesneyi oluşturmus olduk
+    pokedex = Pokedex.fromJson(decodedJson);
 
     return pokedex;
   }
@@ -48,9 +47,7 @@ class _PokemonListState extends State<PokemonList> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    veri =
-        pokemonlariGetir(); // nolacak burada veri bir kere doldurulacak buıld tekrar tekrar calıssa bıle pokemonlar state edılmıycek
-    // dolayısı ile hızlandırmıs olduk uygulamayı.
+    veri = pokemonlariGetir();
   }
 
   @override
@@ -66,21 +63,15 @@ class _PokemonListState extends State<PokemonList> {
             return FutureBuilder(
               future: veri,
               builder: (context, AsyncSnapshot<Pokedex> gelenPodedex) {
-                if (gelenPodedex.connectionState ==
-                    ConnectionState
-                        .waiting) // yenı daha verı gelmemısse , getırılıyorsa bunu yap
-                {
+                if (gelenPodedex.connectionState == ConnectionState.waiting) {
                   return Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (gelenPodedex.connectionState ==
-                    ConnectionState.done) // done = yani artık işlem bittiyse
-                {
-                  // childrenda   yaptıgımız    bir bir eleman için şunu olustur dedık
+                    ConnectionState.done) {
                   return GridView.count(
                     crossAxisCount: 2,
                     children: gelenPodedex.data!.pokemon!.map((poke) {
-                      //poke pokemon array ını tek tek dolasarak herbır pokemunu gezıyor
                       return InkWell(
                         onTap: () {
                           Navigator.push(
@@ -89,7 +80,6 @@ class _PokemonListState extends State<PokemonList> {
                                   builder: (context) =>
                                       PokemonDetail(pokemon: poke)));
                         },
-                        //Hero yaptık cunku tıkladıgımda resım karsı tarafa anımasyonla gıtmesını ıstıyorum.
                         child: Hero(
                             //tag:poke.img,
                             tag: poke.img,
@@ -97,7 +87,6 @@ class _PokemonListState extends State<PokemonList> {
                               elevation: 6,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                //FadeInImage Widget   :  Resım yuklenırken gif oynasın demek ıstedıgımızde  kullanırz.
                                 children: [
                                   Container(
                                     width: 250,
@@ -117,7 +106,7 @@ class _PokemonListState extends State<PokemonList> {
                     }).toList(),
                   );
                 } else {
-                  return Container(); // HATA CIKMASI DURUMU
+                  return Container();
                 }
               },
             );
@@ -125,21 +114,15 @@ class _PokemonListState extends State<PokemonList> {
             return FutureBuilder(
               future: veri,
               builder: (context, AsyncSnapshot<Pokedex> gelenPodedex) {
-                if (gelenPodedex.connectionState ==
-                    ConnectionState
-                        .waiting) // yenı daha verı gelmemısse , getırılıyorsa bunu yap
-                {
+                if (gelenPodedex.connectionState == ConnectionState.waiting) {
                   return Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (gelenPodedex.connectionState ==
-                    ConnectionState.done) // done = yani artık işlem bittiyse
-                {
-                  // childrenda   yaptıgımız    bir bir eleman için şunu olustur dedık
+                    ConnectionState.done) {
                   return GridView.extent(
                     maxCrossAxisExtent: 250,
                     children: gelenPodedex.data!.pokemon!.map((poke) {
-                      //poke pokemon array ını tek tek dolasarak herbır pokemunu gezıyor
                       return InkWell(
                         onTap: () {
                           Navigator.push(
@@ -148,7 +131,6 @@ class _PokemonListState extends State<PokemonList> {
                                   builder: (context) =>
                                       PokemonDetail(pokemon: poke)));
                         },
-                        //Hero yaptık cunku tıkladıgımda resım karsı tarafa anımasyonla gıtmesını ıstıyorum.
                         child: Hero(
                             //tag:poke.img,
                             tag: poke.img,
@@ -156,7 +138,6 @@ class _PokemonListState extends State<PokemonList> {
                               elevation: 6,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                //FadeInImage Widget   :  Resım yuklenırken gif oynasın demek ıstedıgımızde  kullanırz.
                                 children: [
                                   Container(
                                     width: 250,
@@ -176,7 +157,7 @@ class _PokemonListState extends State<PokemonList> {
                     }).toList(),
                   );
                 } else {
-                  return Container(); // HATA CIKMASI DURUMU
+                  return Container();
                 }
               },
             );

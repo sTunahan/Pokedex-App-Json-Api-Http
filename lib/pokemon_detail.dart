@@ -32,6 +32,9 @@ class PokemonDetail extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
+
+            ///Pokémon's information
+
             child: Column(
               children: [
                 SizedBox(
@@ -43,8 +46,6 @@ class PokemonDetail extends StatelessWidget {
                 Text("Types"),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-
-                  ///şimdi burada bana bır list gelcek (types) yanı bunları ben tektek widgetlarla ele almak ıstıyorum VE bu widgetlar  (Cip 'ler) o yuzden map kullancaz
                   children: pokemon.type!
                       .map((tip) => Chip(
                           backgroundColor: Colors.brown.shade200,
@@ -54,8 +55,6 @@ class PokemonDetail extends StatelessWidget {
                 Text("Pre Evolution"),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-
-                  ///şimdi burada bana bır list gelcek (types) yanı bunları ben tektek widgetlarla ele almak ıstıyorum VE bu widgetlar  (Cip 'ler) o yuzden map kullancaz
                   children: pokemon.prevEvolution != null
                       ? pokemon.prevEvolution!
                           .map((preevolution) => Chip(
@@ -67,8 +66,6 @@ class PokemonDetail extends StatelessWidget {
                 Text("Next Evolution"),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-
-                  ///şimdi burada bana bır list gelcek (types) yanı bunları ben tektek widgetlarla ele almak ıstıyorum VE bu widgetlar  (Cip 'ler) o yuzden map kullancaz
                   children: pokemon.nextEvolution != null
                       ? pokemon.nextEvolution!
                           .map((evolution) => Chip(
@@ -80,8 +77,6 @@ class PokemonDetail extends StatelessWidget {
                 Text("weakness"),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-
-                  ///şimdi burada bana bır list gelcek (types) yanı bunları ben tektek widgetlarla ele almak ıstıyorum VE bu widgetlar  (Cip 'ler) o yuzden map kullancaz
                   children: pokemon.weaknesses != null
                       ? pokemon.weaknesses!
                           .map((weakness) => Chip(
